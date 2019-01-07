@@ -1,8 +1,10 @@
 var origin = [700, 450], grid_size = 20, scale = 20, xGrid = [], beta = 0, alpha = 0, key = function (d) { return d.id; }, startAngle = Math.PI / 8;
 var svg = d3.select('svg').call(d3.drag().on('drag', dragged).on('start', dragStart).on('end', dragEnd)).append('g');
 var color = d3.scaleOrdinal(d3.schemeCategory20);
-var cubesGroup = svg.append('g').attr('class', 'cubes');
 var mx, my, mouseX, mouseY;
+
+var gridGroup = svg.append('g').attr('class', 'grids');
+var cubesGroup = svg.append('g').attr('class', 'cubes');
 
 var grid3d = d3._3d()
     .shape('GRID', 40) //40 is grid_size * 2;
@@ -23,7 +25,7 @@ var cubes3D = d3._3d()
 
 function processGrid(data) {
     /* ----------- GRID ----------- */
-    var xGrid = svg.selectAll('path.grid').data(data, key);
+    var xGrid = gridGroup.selectAll('path.grid').data(data, key);
 
     xGrid
         .enter()
@@ -38,7 +40,6 @@ function processGrid(data) {
 
     xGrid.exit().remove();
 }
-
 function processCubes(data, tt) {
 
     /* --------- CUBES ---------*/
