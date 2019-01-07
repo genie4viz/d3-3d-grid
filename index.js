@@ -38,6 +38,7 @@ function processGrid(data) {
 
     xGrid.exit().remove();
 }
+
 function processCubes(data, tt) {
 
     /* --------- CUBES ---------*/
